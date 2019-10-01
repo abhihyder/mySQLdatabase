@@ -14,7 +14,7 @@
     /*
     syntex of  select data
 
-    $var= "SELECT * FROM table_name";  //assign to a variable.
+    $var= "SELECT column_name FROM table_name";  //assign to a variable.
 
     */
 
