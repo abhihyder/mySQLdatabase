@@ -14,6 +14,10 @@
     $pdo->query($sql);
     */
 
+
+    //-------------------------------------------------------
+   
+   
     $sql= "select * from student_details order by(name)";
     $result=$pdo->query($sql);
     foreach($result as $values){
