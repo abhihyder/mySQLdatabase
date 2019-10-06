@@ -2,40 +2,60 @@
 
     include "db.php";
 
-    class college{
-        private $table='student_details';
-        private $name;
-        private $dep;
-        private $age;
+    abstract class college{
+        protected $table;
 
-        public function setName($name){
-            $this->name= $name;
-          
-        }
+       abstract public function insert();       
+       abstract public function update($id); 
+       
+       
 
-        public function setDep($dep){
-            $this->dep= $dep;
-        }
 
-        public function setAge($age){
-            $this->age= $age;
-        }
-
-        public function insert(){
-            $sql= "INSERT INTO $this->table(name, department, age) VALUES(:name, :dep, :age)";
-            $stmt= db::prepare($sql);
-            $stmt->bindParam(':name', $this->name);
-            $stmt->bindParam(':dep', $this->dep);
-            $stmt->bindParam(':age', $this->age);
-            return $stmt->execute();
-        }
-
+       
+        //--------------------------------------
+        // read data from student_details
         public function readAll(){
-            $sql ="select * from $this->table";
-            $stmt= db::prepare($sql);
+            try{
+            $sql= "SELECT * FROM $this->table";
+            $stmt= db::ownPrepare($sql);
             $stmt->execute();
             return $stmt->fetchAll();
+         
+            }catch(PDOException $e){
+                echo "Having problem to database connection, please try again!". $e->getMessage();
+            }
+        }
+
+
+
+
+
+        public function showById($id){
+            try{
+                $sql= "SELECT * FROM $this->table WHERE id= :id";
+                $stmt= db::ownPrepare($sql);
+                $stmt->bindParam(':id', $id);
+                $stmt->execute();
+                return $stmt->fetch();
+             
+            }catch(PDOException $e){
+                echo "Having problem to database connection, please try again!". $e->getMessage();
+            }
+        }
+
+
+        // Delete data
+        public function delete($id){
+            try{
+                $sql= "DELETE FROM $this->table WHERE id=:id";
+                $stmt= db::ownPrepare($sql);
+                $stmt->bindParam(':id', $id);
+                return $stmt->execute();
+         
+            }catch(PDOException $e){
+                echo "Having problem to database connection, please try again!". $e->getMessage();
+            }
+
         }
     }
-
 ?>
