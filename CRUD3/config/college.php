@@ -12,7 +12,7 @@ class college{
         $this->name=$name;
     }
 
-    function setDep($dep){
+    function setDep($dep){ 
         $this->dep=$dep;
     }
 
@@ -22,20 +22,18 @@ class college{
 
 */
 
-
     function insert($arr){
         try{
-            $sql= "INSERT INTO $this->table(";
-            foreach($arr as $key=>$val){
-                if(array_key_exists($key, $this->table)){
-                    $sql.= "$Key, ";
-                }
+            $array= array_pop($arr);
+            $input= array_keys($array);
+            $sql= "INSERT INTO  $this->table(";
+            foreach($input as $key){
+                    $sql.= "$key, ";
+                
             }
             $sql.= ") VALUES (";
-            foreach($arr as $key=>$val){
-                if(array_key_exists($key, $this->table)){
+            foreach($array as $key=>$val){
                     $sql.="$val, ";
-                }
             }
             $sql.=")";
 

@@ -10,6 +10,7 @@
 if($_SERVER['REQUEST_METHOD']=='POST' && isset($_POST['create'])){
     $arr=$_POST;
     $student->insert($arr);
+
     header('location:index.php');
 }
 
