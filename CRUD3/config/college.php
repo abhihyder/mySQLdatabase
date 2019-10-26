@@ -17,18 +17,16 @@ class college{
                 }else{
                     $sql.="$key";
                 }
-                
             }  
             $sql.= ") VALUES (";
             foreach($arr as $key=>$val){
                 if(++$ii<$lngt){
-                    $sql.="$val, ";
+                    $sql.="'".$val."', ";
                 }else{
-                    $sql.="$val";
+                    $sql.="'".$val."'";
                 }
             }
             $sql.=")";
-            print_r($sql); die();
             $stmt= db::ownPrepare($sql);
             return $stmt->execute($arr);
         }catch(PDOException $e){
