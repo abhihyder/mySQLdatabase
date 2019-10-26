@@ -8,7 +8,13 @@
 
 
 if($_SERVER['REQUEST_METHOD']=='POST' && isset($_POST['create'])){
-    $arr=$_POST;
+    $arr=[
+        'name'       => $_POST['name'],
+        'department' => $_POST['dep'],
+        'age'        => $_POST['age']
+    ];
+
+
     $student->insert($arr);
 
     header('location:index.php');

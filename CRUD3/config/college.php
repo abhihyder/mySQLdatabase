@@ -3,40 +3,32 @@
 
 class college{
     public $table="student_details";
-    //public $table2="demo";
-  /*  private $name;
-    private $dep;
-    private $age;
 
-    function setName($name){
-        $this->name=$name;
-    }
-
-    function setDep($dep){ 
-        $this->dep=$dep;
-    }
-
-    function setAge($age){
-        $this->age=$age;
-    }
-
-*/
 
     function insert($arr){
         try{
-            $array= array_pop($arr);
-            $input= array_keys($array);
-            $sql= "INSERT INTO  $this->table(";
-            foreach($input as $key){
-                    $sql.= "$key, ";
+            $lngt= count($arr);
+            $i=0;
+            $ii=0;
+            $sql= "INSERT INTO  $this->table (";
+            foreach($arr as $key=>$val){
+                if(++$i<$lngt){
+                    $sql.="$key, ";
+                }else{
+                    $sql.="$key";
+                }
                 
-            }
+            }  
             $sql.= ") VALUES (";
-            foreach($array as $key=>$val){
+            foreach($arr as $key=>$val){
+                if(++$ii<$lngt){
                     $sql.="$val, ";
+                }else{
+                    $sql.="$val";
+                }
             }
             $sql.=")";
-
+            print_r($sql); die();
             $stmt= db::ownPrepare($sql);
             return $stmt->execute($arr);
         }catch(PDOException $e){

@@ -21,7 +21,7 @@
  
       <tr>
         <td>Department: </td>
-          <td><input type="text" name="department"placeholder="Student department" /></td>
+          <td><input type="text" name="dep"placeholder="Student department" /></td>
       </tr>
 
       <tr>
