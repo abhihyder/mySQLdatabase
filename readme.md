@@ -199,6 +199,7 @@
 ## ALIAS statement to show data .
 
 	Example1: SELECT u.username AS UserName, u.age AS Age, p.favorite_color FavColor FROM users AS u LEFT JOIN profiles AS p ON u.user_id = p.user_id;
+	Example2: SELECT JOB_ID, COUNT(JOB_ID) AS employees_number FROM employees GROUP BY JOB_ID;
 
 	
 ## JOIN 2 more tables.
